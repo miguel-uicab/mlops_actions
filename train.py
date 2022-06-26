@@ -69,3 +69,7 @@ plot_precision_recall(y_test, y_test_pred, ax=ax)
 neptune.log_image('performance charts', fig_roc)
 neptune.log_image('performance charts', fig_cm)
 neptune.log_image('performance charts', fig_pr)
+
+# Handle CI pipeline details
+if os.getenv('CI') == "true":
+    neptune.append_tag('ci-pipeline', os.getenv('NEPTUNE_EXPERIMENT_TAG_ID'))
