@@ -6,11 +6,11 @@ on:
     branches: [master]
 
 jobs:
-  compare-experiments:
+  compare-experiments
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7]
+        python-version: [3.8]
     env:
       NEPTUNE_API_TOKEN: ${{ secrets.NEPTUNE_API_TOKEN }}
       NEPTUNE_PROJECT_NAME: ${{ secrets.NEPTUNE_PROJECT_NAME }}
