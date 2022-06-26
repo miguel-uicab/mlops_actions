@@ -2,12 +2,11 @@
 name: Neptune actions
 
 on:
-  push:
-    branches:
-      - develop
+  pull_request:
+    branches: [master]
 
 jobs:
-  compare-experiments
+  compare-experiments:
     runs-on: ubuntu-latest
     strategy:
       matrix:
