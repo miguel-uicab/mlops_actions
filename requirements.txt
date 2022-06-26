@@ -1,6 +1,6 @@
-lightgbm==3.3.2
-neptune-client==0.16.3
-neptune-contrib==0.28.1
-numpy==1.23.0
-scikit-learn==1.1.1
+lightgbm==2.3.1
+neptune-client==0.14.2
+neptune-contrib==0.25.0
+numpy==1.20.1
+scikit-learn==0.23.1
 scikit-plot==0.3.7

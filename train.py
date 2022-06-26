@@ -28,12 +28,12 @@ lgb_train = lgb.Dataset(X_train, y_train)
 lgb_eval = lgb.Dataset(X_test, y_test, reference=lgb_train)
 
 # Connect your script to Neptune
-#neptune.init(api_token=os.getenv('NEPTUNE_API_TOKEN'),
- #            project_qualified_name=os.getenv('NEPTUNE_PROJECT_NAME'))
+neptune.init(api_token=os.getenv('NEPTUNE_API_TOKEN'),
+             project_qualified_name=os.getenv('NEPTUNE_PROJECT_NAME'))
 
-neptune.init(project_qualified_name="miguel.uicab.perera/mlops-neptune",
-              api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI3NmQ1ZDNlNC03NGI4LTQzYjYtYjBiYi0yNDVhYzY3NDA3OTAifQ=="
-)
+# neptune.init(project_qualified_name="miguel.uicab.perera/mlops-neptune",
+#              api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI3NmQ1ZDNlNC03NGI4LTQzYjYtYjBiYi0yNDVhYzY3NDA3OTAifQ=="
+# )
 
 # Create an experiment and log hyperparameters
 neptune.create_experiment('lightGBM-on-wine',
@@ -69,3 +69,7 @@ plot_precision_recall(y_test, y_test_pred, ax=ax)
 neptune.log_image('performance charts', fig_roc)
 neptune.log_image('performance charts', fig_cm)
 neptune.log_image('performance charts', fig_pr)
+
+# Handle CI pipeline details
+if os.getenv('CI') == "true":
+    neptune.append_tag('ci-pipeline', os.getenv('NEPTUNE_EXPERIMENT_TAG_ID'))
