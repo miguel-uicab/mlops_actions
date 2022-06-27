@@ -5,6 +5,8 @@ on:
    push:
       branches:
         - develop
+   schedule:
+     - cron: '*/5  * * * *' # Execute every day at 7
 
 jobs:
   compare-experiments:
